@@ -156,4 +156,5 @@ with tf.Session() as sess:
         item['rank'] = i + 1
         item['weight'] = float(item['weight'])
 
+    print('JSON out')
     print(json.dumps(impact_list, sort_keys=True, indent=4))
