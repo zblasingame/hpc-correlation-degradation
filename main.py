@@ -36,8 +36,8 @@ def d_print(string):
         print(string)
 
 # Grab data
-headers, train_data = parse_csv(FLAGS.train_file)
-headers, test_data = parse_csv(FLAGS.test_file)
+headers, train_data = parse_csv(FLAGS.train_file, black_list_cols=[0, 1, 2])
+headers, test_data = parse_csv(FLAGS.test_file, black_list_cols=[0, 1, 2])
 
 
 num_in = train_data[0].size - 1

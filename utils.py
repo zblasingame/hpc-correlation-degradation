@@ -6,7 +6,7 @@ import numpy as np
 from functools import reduce
 
 
-def parse_csv(filename, normalize=True):
+def parse_csv(filename, normalize=True, black_list_cols=[]):
     headers = []
     data = []
 
@@ -21,10 +21,12 @@ def parse_csv(filename, normalize=True):
             entries = line.split(',')
 
             if header_line:
-                headers = entries
+                headers = [entry for i, entry in enumerate(entries)
+                           if i not in black_list_cols]
                 header_line = False
             else:
-                data.append([float(el) for el in entries])
+                data.append([float(el) for i, el in enumerate(entries)
+                             if i not in black_list_cols])
 
     rtn_mat = np.matrix(data)
 
